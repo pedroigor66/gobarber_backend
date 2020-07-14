@@ -19,15 +19,16 @@
         "prettier"
     ],
     "rules": {
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-              "ts": "never"
-            }
-          ],
-        "prettier/prettier": "error",
-        "class-methods-use-this": "off"
+      "prettier/prettier": "error",
+      "class-methods-use-this": "off",
+      "camelcase": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never"
+        }
+      ]
     },
     "settings": {
         "import/resolver": {
