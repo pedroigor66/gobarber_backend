@@ -1,7 +1,7 @@
-import { Request } from 'express';
-
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import authConfig from '../config/auth';
 
 import User from '../models/User';
 
@@ -12,6 +12,7 @@ interface Request {
 
 interface Response {
   user: User;
+  token: string;
 }
 
 class AuthenticateUserService {
@@ -29,8 +30,18 @@ class AuthenticateUserService {
     if (!paswordMatched) {
       throw new Error('Incorrect email/password combination.');
     }
+
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
+      // secret = private key generated in md5
+      subject: user.id,
+      expiresIn, // user is logged out automatically after 24h
+    });
+
     return {
       user,
+      token,
     };
   }
 }
