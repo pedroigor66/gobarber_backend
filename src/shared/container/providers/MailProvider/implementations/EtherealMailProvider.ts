@@ -25,7 +25,7 @@ export default class EtherealMailProvider implements IMailProvider {
       from: 'Equipe GoBarber <equipe@gobarber.com.br>',
       to,
       subject: 'Recuperação de senha',
-      text: 'Hello to myself!',
+      text: body,
     });
 
     console.log('Message sent: %s', message.messageId);
