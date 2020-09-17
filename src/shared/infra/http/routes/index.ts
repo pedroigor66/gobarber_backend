@@ -16,5 +16,4 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 
-// .use works for any route, and is redirected to appointmentsRouter
 export default routes;

@@ -47,7 +47,7 @@ class AuthenticateUserService {
     const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
-      // secret = private key generated in md5
+      // secret = private key randomly generated in md5.cz
       subject: user.id,
       expiresIn, // user is logged out automatically after 24h
     });
