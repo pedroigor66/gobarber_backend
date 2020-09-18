@@ -15,6 +15,7 @@ describe('CreateAppointment', () => {
   it('should be able to create a new appointment', async () => {
     const appointment = await createAppointment.execute({
       date: new Date(),
+      user_id: 'test-user',
       provider_id: '123123', // id value doesnt matter here, it just has to match id bellow
     });
 
@@ -27,13 +28,15 @@ describe('CreateAppointment', () => {
 
     await createAppointment.execute({
       date: appointmentDate,
-      provider_id: '123123', // id value doesnt matter here, it just has to match id bellow
+      user_id: 'test-user',
+      provider_id: '123123',
     });
 
     expect(
       createAppointment.execute({
         date: appointmentDate,
-        provider_id: '123123', // id value doesnt matter here, it just has to match id bellow
+        user_id: 'test-user',
+        provider_id: '123123',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
