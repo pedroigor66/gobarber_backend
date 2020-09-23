@@ -26,4 +26,18 @@ export default class RedisCacheProvider implements ICacheProvider {
   }
 
   public async invalidate(key: string): Promise<void> {}
+
+  public async invalidatePrefix(prefix: string): Promise<void> {
+    const keys = await this.client.keys(`${prefix}:*`);
+    // searches for any prefix passed as argument followed by :anything
+    const pipeline = this.client.pipeline();
+    // more performance for multiple operations
+
+    keys.forEach(key => {
+      pipeline.del(key);
+    });
+
+    await pipeline.exec();
+    // executes all deletions
+  }
 }
