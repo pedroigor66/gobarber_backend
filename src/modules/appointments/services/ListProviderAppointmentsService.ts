@@ -45,8 +45,6 @@ class ListProviderAppointmentsService {
         },
       );
 
-      console.log('Searched on the databank');
-
       await this.cacheProvider.save(cacheKey, classToClass(appointments));
     }
 
